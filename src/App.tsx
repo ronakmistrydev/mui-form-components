@@ -1,7 +1,14 @@
-import { Box, Button, Container, TextField } from '@mui/material';
+import {
+    Autocomplete,
+    Box,
+    Button,
+    Container,
+    TextField
+} from '@mui/material';
 import { useFormik } from 'formik';
 import NumberFormat  from 'react-number-format';
 import * as yup from 'yup';
+import { phoneNumberPrefixByCountry } from './components/country-code';
 
 const validationSchema = yup.object().shape({
     email: yup.string().email('Invalid email').required('Email is required'),
@@ -19,6 +26,7 @@ function App() {
             phoneNumber: '',
             ipAddress: '',
             postalCode: '',
+            country: '',
         },
         validationSchema,
         onSubmit: values => {
@@ -79,6 +87,37 @@ function App() {
                     error={formik.touched.postalCode && Boolean(formik.errors.postalCode)}
                     helperText={formik.errors.postalCode && formik.touched.postalCode ? formik.errors.postalCode : ''}
                 />
+
+                <Autocomplete
+                    sx={{ minWidth: 240, width: '100%' }}
+                    autoWidth
+                    options={phoneNumberPrefixByCountry}
+                    autoHighlight
+                    getOptionLabel={(option) => `${option.label} +${option.phone}`}
+                    renderOption={(props, option) => (
+                        <Box component="li" sx={{ '& > img': { mr: 2, flexShrink: 0 } }} {...props}>
+                            <img
+                                loading="lazy"
+                                width="20"
+                                src={`https://flagcdn.com/w20/${option.code.toLowerCase()}.png`}
+                                srcSet={`https://flagcdn.com/w40/${option.code.toLowerCase()}.png 2x`}
+                                alt={`${option.label} flag`}
+                            />
+                            {option.label} ({option.code}) +{option.phone}
+                        </Box>
+                    )}
+                    renderInput={(params) => (
+                        <TextField
+                            {...params}
+                            label="Choose a Country"
+                            inputProps={{
+                                ...params.inputProps,
+                                autoComplete: 'new-password',
+                            }}
+                        />
+                    )}
+                />
+
 
                 <NumberFormat
                     fullWidth
