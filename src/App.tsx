@@ -8,6 +8,7 @@ const validationSchema = yup.object().shape({
     password: yup.string().required('Password is required'),
     phoneNumber: yup.string().required('Phone number is required'),
     ipAddress: yup.string().required('IP address is required'),
+    postalCode: yup.number().min(5).max(5).required('Postal code is required'),
 });
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
             password: '',
             phoneNumber: '',
             ipAddress: '',
+            postalCode: '',
         },
         validationSchema,
         onSubmit: values => {
@@ -61,6 +63,20 @@ function App() {
                     value={formik.values.password}
                     error={formik.touched.password && Boolean(formik.errors.password)}
                     helperText={formik.errors.password && formik.touched.password ? formik.errors.password : ''}
+                />
+
+                <NumberFormat
+                    fullWidth
+                    label="Postal Code"
+                    name="postalCode"
+                    customInput={TextField}
+                    format="#####"
+                    variant="outlined"
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    value={formik.values.postalCode}
+                    error={formik.touched.postalCode && Boolean(formik.errors.postalCode)}
+                    helperText={formik.errors.postalCode && formik.touched.postalCode ? formik.errors.postalCode : ''}
                 />
 
                 <NumberFormat
