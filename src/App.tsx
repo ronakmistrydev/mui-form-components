@@ -1,6 +1,6 @@
 import { Box, Button, Container, TextField } from '@mui/material';
-import NumberFormat  from 'react-number-format';
 import { useFormik } from 'formik';
+import NumberFormat  from 'react-number-format';
 import * as yup from 'yup';
 
 const validationSchema = yup.object().shape({
@@ -34,7 +34,8 @@ function App() {
                 sx={{
                     display: 'flex',
                     flexDirection: 'column',
-                    gap: 3
+                    gap: 3,
+                    my: 8,
                 }}
             >
                 <TextField
