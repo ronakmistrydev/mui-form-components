@@ -89,6 +89,13 @@ function App() {
                 />
 
                 <Autocomplete
+                    onChange={(event, value) => {
+                        formik.setFieldValue('country', value);
+                    }}
+                    onInputChange={(event, value) => {
+                        formik.setFieldValue('country', value);
+                    }}
+                    value={formik.values.country ? formik.values.country : null}
                     options={phoneNumberPrefixByCountry}
                     autoHighlight
                     getOptionLabel={(option) => `${option.label} +${option.phone}`}
