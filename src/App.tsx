@@ -1,4 +1,5 @@
 import { Box, Button, Container, TextField } from '@mui/material';
+import NumberFormat  from 'react-number-format';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 
@@ -12,6 +13,7 @@ function App() {
         initialValues: {
             email: '',
             password: '',
+            phoneNumber: '',
         },
         validationSchema,
         onSubmit: values => {
@@ -51,6 +53,20 @@ function App() {
                     value={formik.values.password}
                     error={formik.touched.password && Boolean(formik.errors.password)}
                     helperText={formik.errors.password && formik.touched.password ? formik.errors.password : ''}
+                />
+
+                <NumberFormat
+                    fullWidth
+                    label="Phone Number"
+                    name="phoneNumber"
+                    customInput={TextField}
+                    format="(###) ###-####"
+                    variant="outlined"
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    value={formik.values.phoneNumber}
+                    error={formik.touched.phoneNumber && Boolean(formik.errors.phoneNumber)}
+                    helperText={formik.errors.phoneNumber && formik.touched.phoneNumber ? formik.errors.phoneNumber : ''}
                 />
 
                 <Button
