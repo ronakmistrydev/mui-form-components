@@ -6,6 +6,8 @@ import * as yup from 'yup';
 const validationSchema = yup.object().shape({
     email: yup.string().email('Invalid email').required('Email is required'),
     password: yup.string().required('Password is required'),
+    phoneNumber: yup.string().required('Phone number is required'),
+    ipAddress: yup.string().required('IP address is required'),
 });
 
 function App() {
@@ -14,6 +16,7 @@ function App() {
             email: '',
             password: '',
             phoneNumber: '',
+            ipAddress: '',
         },
         validationSchema,
         onSubmit: values => {
@@ -72,6 +75,20 @@ function App() {
                     value={formik.values.phoneNumber}
                     error={formik.touched.phoneNumber && Boolean(formik.errors.phoneNumber)}
                     helperText={formik.errors.phoneNumber && formik.touched.phoneNumber ? formik.errors.phoneNumber : ''}
+                />
+
+                <NumberFormat
+                    fullWidth
+                    label="IP Address"
+                    name="ipAddress"
+                    customInput={TextField}
+                    format="###.###.###.###"
+                    variant="outlined"
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    value={formik.values.ipAddress}
+                    error={formik.touched.ipAddress && Boolean(formik.errors.ipAddress)}
+                    helperText={formik.errors.ipAddress && formik.touched.ipAddress ? formik.errors.ipAddress : ''}
                 />
 
                 <Button
