@@ -89,8 +89,6 @@ function App() {
                 />
 
                 <Autocomplete
-                    sx={{ minWidth: 240, width: '100%' }}
-                    autoWidth
                     options={phoneNumberPrefixByCountry}
                     autoHighlight
                     getOptionLabel={(option) => `${option.label} +${option.phone}`}
