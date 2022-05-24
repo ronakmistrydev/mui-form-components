@@ -1,13 +1,12 @@
-import { Button } from '@mui/material';
+import { Container } from '@mui/material';
+import { EmailInputField } from './components';
 
 function App() {
   return (
-      <div>
-        <Button variant="contained" color="primary">
-          Hello World
-        </Button>
-      </div>
-  )
+   <Container>
+     <EmailInputField />
+   </Container>
+  );
 }
 
 export default App;
