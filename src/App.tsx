@@ -26,6 +26,11 @@ function App() {
             <Box
                 component="form"
                 onSubmit={formik.handleSubmit}
+                sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: 3
+                }}
             >
                 <TextField
                     fullWidth
@@ -75,9 +80,6 @@ function App() {
                     variant="contained"
                     color="primary"
                     size="large"
-                    sx={{
-                        mt: 3,
-                    }}
                 >
                     Submit
                 </Button>
